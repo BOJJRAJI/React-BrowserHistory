@@ -1,0 +1,46 @@
+.history-item {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.content-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.time {
+  font-family: 'Roboto';
+  font-size: 13px;
+  color: #475569;
+  font-weight: 600;
+  margin-right: 13px;
+}
+.app-logo {
+  height: 20px;
+  width: 20px;
+  margin-top: 10px;
+  margin-right: 10px;
+}
+.title {
+  font-family: 'Roboto';
+  font-size: 15px;
+  color: #475569;
+  font-weight: 600;
+  margin-right: 10px;
+}
+.link {
+  font-family: 'Roboto';
+  font-size: 13px;
+  color: #64748b;
+  font-weight: 600;
+  margin-right: 10px;
+}
+.delete-button {
+  background-color: transparent;
+  border: none;
+}
+.delete-icon {
+  height: 20px;
+  width: 20px;
+}
