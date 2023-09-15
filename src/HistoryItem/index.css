@@ -1,46 +1,62 @@
 .history-item {
-  list-style-type: none;
+  width: 100%;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
 }
-.content-container {
+.data {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 .time {
-  font-family: 'Roboto';
   font-size: 13px;
+  font-weight: bold;
   color: #475569;
-  font-weight: 600;
-  margin-right: 13px;
-}
-.app-logo {
-  height: 20px;
-  width: 20px;
-  margin-top: 10px;
-  margin-right: 10px;
+  font-family: 'Roboto';
 }
 .title {
-  font-family: 'Roboto';
-  font-size: 15px;
+  font-size: 13px;
+  font-weight: bold;
   color: #475569;
-  font-weight: 600;
+  font-family: 'Roboto';
+}
+.logo {
+  height: 20px;
+  width: 20px;
+  margin-top: 13px;
+  margin-left: 10px;
   margin-right: 10px;
 }
-.link {
-  font-family: 'Roboto';
-  font-size: 13px;
+.url {
+  font-size: 10px;
+  font-weight: 800;
   color: #64748b;
-  font-weight: 600;
-  margin-right: 10px;
+  font-family: 'Roboto';
+  margin-top: 15px;
+  margin-left: 10px;
 }
 .delete-button {
   background-color: transparent;
   border: none;
 }
-.delete-icon {
+.delete-image {
   height: 20px;
   width: 20px;
+}
+.small-device-time {
+  display: none;
+}
+.all-data-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+@media screen and (max-width: 100px) {
+  .small-device-time {
+    display: block;
+    font-size: 13px;
+    font-weight: bold;
+    color: #475569;
+    font-family: 'Roboto';
+  }
 }
