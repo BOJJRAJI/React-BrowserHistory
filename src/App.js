@@ -1,5 +1,5 @@
 import {Component} from 'react'
-import HistoryItem from './HistoryItem'
+import Item from './components/Item'
 import './App.css'
 
 // These are the list used in the application. You can move them to any component needed.
@@ -78,79 +78,73 @@ const initialHistoryList = [
   },
 ]
 
-// Replace your code here
 class App extends Component {
-  state = {historyList: initialHistoryList, search: true}
+  state = {historyList: initialHistoryList, searchInput: ''}
 
-  onSearchInput = event => {
+  onDeleteItem = id => {
     const {historyList} = this.state
-    const {value} = event.target
-    const searchResults = historyList.filter(eachList =>
-      eachList.title.toLowerCase().includes(value.toLowerCase()),
-    )
-
-    this.setState({
-      historyList: searchResults,
-      search: searchResults.length > 0,
-    })
+    const filterList = historyList.filter(item => item.id !== id)
+    this.setState({historyList: filterList})
   }
 
-  deleteHistory = id => {
-    const {historyList} = this.state
-    const filterHistoryLists = historyList.filter(
-      eachList => eachList.id !== id,
-    )
-    this.setState({
-      historyList: filterHistoryLists,
-      search: filterHistoryLists.length > 0,
-    })
+  onChangeSearch = e => {
+    this.setState({searchInput: e.target.value})
   }
 
   render() {
-    const {search, historyList} = this.state
+    const {searchInput, historyList} = this.state
+    const searchedData = historyList.filter(item =>
+      item.title.toLowerCase().includes(searchInput.toLowerCase()),
+    )
 
     return (
-      <div className="app-container">
-        <div className="history-container">
-          <div className="logo-input-container">
-            <img
-              src="https://assets.ccbp.in/frontend/react-js/history-website-logo-img.png"
-              alt="app logo"
-              className="logo"
-            />
-            <div className="input-icon-container">
+      <div className="card">
+        <div className="header-container">
+          <img
+            src="https://assets.ccbp.in/frontend/react-js/history-website-logo-img.png"
+            alt="app logo"
+            className="image-con"
+          />
+
+          <div className="search-container">
+            <div className="search-icon-container">
               <img
                 src="https://assets.ccbp.in/frontend/react-js/search-img.png"
-                alt=" search"
+                alt="search"
                 className="search-icon"
-                placeholder="Search history"
-              />
-              <input
-                className="input-element"
-                onChange={this.onSearchInput}
-                type="search"
               />
             </div>
+
+            <hr className="hr-line" />
+            <input
+              className="input-element"
+              type="search"
+              placeholder="Search History"
+              value={searchInput}
+              onChange={this.onChangeSearch}
+            />
           </div>
-          {search && (
-            <ul className="items-container">
-              {historyList.map(eachHistory => (
-                <HistoryItem
-                  historyDetails={eachHistory}
-                  key={eachHistory.id}
-                  deleteHistory={this.deleteHistory}
+        </div>
+        <div className="data-container">
+          {searchedData.length === 0 ? (
+            <div className="no-view-container">
+              <p className="no-vew">There is no history to show</p>
+            </div>
+          ) : (
+            <ul className="lists-container">
+              {searchedData.map(item => (
+                <Item
+                  key={item.id}
+                  item={item}
+                  deleteItem={this.onDeleteItem}
                 />
               ))}
             </ul>
-          )}
-          {!search && (
-            <div className="empty-message-container">
-              <p>There is no history to show</p>
-            </div>
           )}
         </div>
       </div>
     )
   }
 }
+
 export default App
